@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Threat Assessment Guide | Gemara</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Threat Assessment Guide" />
+<meta name="author" content="Gemara Authors" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Step-by-step guide to performing Gemara-compatible threat assessments" />
+<meta name="twitter:description" property="og:description" content="Step-by-step guide to performing Gemara-compatible threat assessments" />
+<link rel="canonical" href="https://gemara.openssf.org/pr-preview/pr-1/tutorials/controls/threat-assessment-guide.html" />
+<meta property="og:url" content="https://gemara.openssf.org/pr-preview/pr-1/tutorials/controls/threat-assessment-guide.html" />
+<meta property="og:site_name" content="Gemara" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Threat Assessment Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Gemara Authors"},"description":"Step-by-step guide to performing Gemara-compatible threat assessments","headline":"Threat Assessment Guide","url":"https://gemara.openssf.org/pr-preview/pr-1/tutorials/controls/threat-assessment-guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="/pr-preview/pr-1/assets/css/style.css">
+    <link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+
+    <!-- Theme Toggle - inline script to prevent flash of wrong theme -->
+    <script>
+      (function() {
+        function getSystemPreference() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        }
+        function getTheme() {
+          try {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || stored === 'light') {
+              return stored;
+            }
+          } catch (e) {}
+          return getSystemPreference();
+        }
+        const theme = getTheme();
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <div class="header-top">
+      <div class="site-logo">
+        <a href="https://openssf.org" target="_blank" rel="noopener noreferrer">
+          <img src="/pr-preview/pr-1/assets/logo.svg" alt="OpenSSF" height="90" />
+        </a>
+      </div>
+
+      <div class="site-branding">
+        <h1 class="site-title">
+          <a href="/pr-preview/pr-1/" rel="author">Gemara</a>
+        </h1>
+        <p class="site-tagline">GRC Engineering Model for Automated Risk Assessment</p>
+      </div>
+
+      <div class="header-actions">
+        <a class="site-github" href="https://github.com/gemaraproj/gemara" target="_blank" rel="noopener noreferrer" aria-label="View Gemara on GitHub" title="View on GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+      </div>
+    </div><nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger"><a class="page-link" href="/pr-preview/pr-1/">Home</a><details class="nav-dropdown">
+            <summary class="page-link">Community</summary>
+            <div class="nav-dropdown-menu"><a class="page-link" href="/pr-preview/pr-1/community/">Overview</a><a class="page-link" href="/pr-preview/pr-1/community/contributing">Contributing</a><a class="page-link" href="/pr-preview/pr-1/community/maintainers">Maintainers</a></div>
+          </details><a class="page-link" href="/pr-preview/pr-1/roadmap">Roadmap</a><a class="page-link" href="/pr-preview/pr-1/tutorials/">Tutorials</a><a class="page-link" href="/pr-preview/pr-1/faq/">FAQ</a><a class="page-link" href="/pr-preview/pr-1/adrs/">ADRs</a></div>
+    </nav></div>
+</header>
+<div class="main-wrapper"><aside class="site-sidebar" role="complementary">
+  <div class="sidebar-content">
+    <form class="sidebar-search" role="search" onsubmit="return false;">
+      <label for="search-input" class="sr-only">Search the site</label>
+      <input
+        type="search"
+        id="search-input"
+        class="sidebar-search-input"
+        placeholder="Search&hellip;"
+        autocomplete="off"
+        spellcheck="false"
+        data-index="/pr-preview/pr-1/search.json"
+      />
+      <ul id="search-results" class="sidebar-search-results" hidden></ul>
+    </form>
+
+    <h3 class="sidebar-title">Quick Links</h3>
+    <nav class="sidebar-nav"><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/model/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Model</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/model/01-scope.html" class="sidebar-link sidebar-nested-link">Scope</a><a href="/pr-preview/pr-1/model/02-definitions.html" class="sidebar-link sidebar-nested-link">Definitions</a><a href="/pr-preview/pr-1/model/03-foundational-concepts.html" class="sidebar-link sidebar-nested-link">Foundational Concepts</a><a href="/pr-preview/pr-1/model/04-the-model.html" class="sidebar-link sidebar-nested-link">The Model</a><a href="/pr-preview/pr-1/model/05-definition-layers.html" class="sidebar-link sidebar-nested-link">The Definition Layers (1, 2, 3)</a><a href="/pr-preview/pr-1/model/05.1-Layer-1.html" class="sidebar-link sidebar-nested-link">Layer 1</a><a href="/pr-preview/pr-1/model/05.2-Layer-2.html" class="sidebar-link sidebar-nested-link">Layer 2</a><a href="/pr-preview/pr-1/model/05.3-Layer-3.html" class="sidebar-link sidebar-nested-link">Layer 3</a><a href="/pr-preview/pr-1/model/06-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Sensitive Activities (Layer 4)</a><a href="/pr-preview/pr-1/model/07.1-measurement-layers.html" class="sidebar-link sidebar-nested-link">The Measurement Layers (5, 6, 7)</a><a href="/pr-preview/pr-1/model/07.2-Layer-5.html" class="sidebar-link sidebar-nested-link">Layer 5</a><a href="/pr-preview/pr-1/model/07.3-Layer-6.html" class="sidebar-link sidebar-nested-link">Layer 6</a><a href="/pr-preview/pr-1/model/07.4-Layer-7.html" class="sidebar-link sidebar-nested-link">Layer 7</a><a href="/pr-preview/pr-1/model/08-applying.html" class="sidebar-link sidebar-nested-link">The Need for Machine-Optimized Documentation Standards</a><a href="/pr-preview/pr-1/model/09-conclusion.html" class="sidebar-link sidebar-nested-link">Conclusion</a><a href="/pr-preview/pr-1/model/10-acknowledgement.html" class="sidebar-link sidebar-nested-link">Authors &amp; Acknowledgements</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/schema/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Schemas</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/schema/auditlog.html" class="sidebar-link sidebar-nested-link">Audit Log</a><a href="/pr-preview/pr-1/schema/base.html" class="sidebar-link sidebar-nested-link">Aliases &amp; Base Types</a><a href="/pr-preview/pr-1/schema/capabilitycatalog.html" class="sidebar-link sidebar-nested-link">Capability Catalog</a><a href="/pr-preview/pr-1/schema/controlcatalog.html" class="sidebar-link sidebar-nested-link">Control Catalog</a><a href="/pr-preview/pr-1/schema/enforcementlog.html" class="sidebar-link sidebar-nested-link">Enforcement Log</a><a href="/pr-preview/pr-1/schema/evaluationlog.html" class="sidebar-link sidebar-nested-link">Evaluation Log</a><a href="/pr-preview/pr-1/schema/guidancecatalog.html" class="sidebar-link sidebar-nested-link">Guidance Catalog</a><a href="/pr-preview/pr-1/schema/lexicon.html" class="sidebar-link sidebar-nested-link">Lexicon</a><a href="/pr-preview/pr-1/schema/mapping-inline.html" class="sidebar-link sidebar-nested-link">Mapping Primitives</a><a href="/pr-preview/pr-1/schema/mappingdocument.html" class="sidebar-link sidebar-nested-link">Mapping Document</a><a href="/pr-preview/pr-1/schema/metadata.html" class="sidebar-link sidebar-nested-link">Metadata</a><a href="/pr-preview/pr-1/schema/policy.html" class="sidebar-link sidebar-nested-link">Policy</a><a href="/pr-preview/pr-1/schema/principlecatalog.html" class="sidebar-link sidebar-nested-link">Principle Catalog</a><a href="/pr-preview/pr-1/schema/riskcatalog.html" class="sidebar-link sidebar-nested-link">Risk Catalog</a><a href="/pr-preview/pr-1/schema/threatcatalog.html" class="sidebar-link sidebar-nested-link">Threat Catalog</a><a href="/pr-preview/pr-1/schema/vectorcatalog.html" class="sidebar-link sidebar-nested-link">Vector Catalog</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/sdk/" class="sidebar-summary-link" onclick="event.stopPropagation();">The SDKs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/sdk/go-sdk.html" class="sidebar-link sidebar-nested-link">Go SDK</a><a href="/pr-preview/pr-1/sdk/python-sdk.html" class="sidebar-link sidebar-nested-link">Python SDK</a></div>
+              </details><details class="sidebar-details">
+            <summary class="sidebar-summary">
+              <a href="/pr-preview/pr-1/tutorials/" class="sidebar-summary-link" onclick="event.stopPropagation();">Tutorials</a>
+            </summary>
+            <div class="sidebar-nested"><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Threats &amp; Controls
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/controls/threat-assessment-guide" class="sidebar-link sidebar-nested-link">Threat Assessment Guide</a><a href="/pr-preview/pr-1/tutorials/controls/control-catalog-guide" class="sidebar-link sidebar-nested-link">Control Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Guidance
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/guidance/guidance-guide" class="sidebar-link sidebar-nested-link">Guidance Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Policy
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/policy/risk-catalog-guide" class="sidebar-link sidebar-nested-link">Risk Catalog Guide</a><a href="/pr-preview/pr-1/tutorials/policy/policy-guide" class="sidebar-link sidebar-nested-link">Policy Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Mapping
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/mapping/mapping-document-guide" class="sidebar-link sidebar-nested-link">Mapping Document Guide</a></div>
+                  </details></div>
+          </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/adrs/" class="sidebar-summary-link" onclick="event.stopPropagation();">ADRs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/adrs/0001-logical-model.html" class="sidebar-link sidebar-nested-link">Create A Logical Model for GRC Engineering Activities</a><a href="/pr-preview/pr-1/adrs/0002-model-schemas.html" class="sidebar-link sidebar-nested-link">Create Schemas for Each Layer in the Logical Model</a><a href="/pr-preview/pr-1/adrs/0003-go-sdk-layer-2.html" class="sidebar-link sidebar-nested-link">Create Go SDK to Support &quot;Layer 2&quot; Authors and Consumers</a><a href="/pr-preview/pr-1/adrs/0004-go-sdk-layer-4.html" class="sidebar-link sidebar-nested-link">Extend Go SDK for &quot;Layer 4&quot; Based on the Privateer Project</a><a href="/pr-preview/pr-1/adrs/0005-cuegen-go.html" class="sidebar-link sidebar-nested-link">Enforce Automated Alignment from Schemas to SDK</a><a href="/pr-preview/pr-1/adrs/0006-unified-package-structure.html" class="sidebar-link sidebar-nested-link">Unified Go SDK Package Structure</a><a href="/pr-preview/pr-1/adrs/0007-isolate-concepts-from-code.html" class="sidebar-link sidebar-nested-link">Isolate Concepts from Code</a><a href="/pr-preview/pr-1/adrs/0008-model-lockin.html" class="sidebar-link sidebar-nested-link">Finish Development on the Model and Common Terms</a><a href="/pr-preview/pr-1/adrs/0009-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Formalize Sensitive Activities as a Layer</a><a href="/pr-preview/pr-1/adrs/0010-dual-ladder-layers.html" class="sidebar-link sidebar-nested-link">Dual-ladders Within Each Layer</a><a href="/pr-preview/pr-1/adrs/0011-definition-measurement.html" class="sidebar-link sidebar-nested-link">Adjust &quot;Upper&quot; and &quot;Lower&quot; Layer Descriptors into &quot;Definition&quot; and &quot;Measurement&quot;</a><a href="/pr-preview/pr-1/adrs/0012-schema-types.html" class="sidebar-link sidebar-nested-link">Refine Terms for Top-level Schema Types</a><a href="/pr-preview/pr-1/adrs/0013-enum-casing-conventions.html" class="sidebar-link sidebar-nested-link">Enum Casing Conventions</a><a href="/pr-preview/pr-1/adrs/0014-mapping-boundaries.html" class="sidebar-link sidebar-nested-link">Mapping Boundaries</a><a href="/pr-preview/pr-1/adrs/0015-nest-imported-fields.html" class="sidebar-link sidebar-nested-link">Nest Imported Fields Under imports Struct</a><a href="/pr-preview/pr-1/adrs/0016-base-log-type.html" class="sidebar-link sidebar-nested-link">Base Log Type</a><a href="/pr-preview/pr-1/adrs/0017-base-catalog-type.html" class="sidebar-link sidebar-nested-link">Base Catalog Type</a><a href="/pr-preview/pr-1/adrs/0018-promote-nested-concepts-to-catalogs.html" class="sidebar-link sidebar-nested-link">Promote Nested Concepts to First-class Catalogs</a><a href="/pr-preview/pr-1/adrs/0019-promote-capabilities.html" class="sidebar-link sidebar-nested-link">Promote Capabilities to a First-class Catalog</a><a href="/pr-preview/pr-1/adrs/0020-groups.html" class="sidebar-link sidebar-nested-link">Merge Family and Category into Group</a><a href="/pr-preview/pr-1/adrs/0021-lexicon.html" class="sidebar-link sidebar-nested-link">New schema for Lexicon artifacts</a><a href="/pr-preview/pr-1/adrs/0022-evidence-on-assessment-log.html" class="sidebar-link sidebar-nested-link">Add Evidence to AssessmentLog</a></div>
+              </details></nav>
+  </div>
+</aside>
+<main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Threat Assessment Guide</h1>
+  </header>
+
+  <div class="post-content">
+    <h2 id="what-this-is">What This Is</h2>
+
+<p>This guide walks through a <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#assessment">assessment</a> using the <a href="https://gemara.openssf.org/">Gemara</a> project.</p>
+
+<p><strong>The basic idea:</strong> Think of a project like a house. First, you identify what the house can do: its <strong><a href="../../model/02-definitions.html#capability">capabilities</a></strong> (e.g., “allow entry/exit”, “store belongings”). Then, you identify <strong><a href="../../model/02-definitions.html#threat">threats</a></strong>, what could go wrong with those capabilities (e.g., “unauthorized entry through unlocked door”, “theft of stored belongings”).</p>
+
+<p>In technical terms:</p>
+<ul>
+  <li><strong><a href="../../model/02-definitions.html#capability">Capabilities</a></strong> define what the technology can do. These form a primary component of the <strong>attack surface</strong> because every intended function represents a potential path for unintended use.</li>
+  <li><strong><a href="../../model/02-definitions.html#threat">Threats</a></strong> define specific ways those capabilities could be misused or exploited.</li>
+</ul>
+
+<p>This exercise helps you systematically identify what could go wrong so you can build appropriate defenses.</p>
+
+<p>Gemara splits these into two artifact kinds: a <code class="language-plaintext highlighter-rouge">CapabilityCatalog</code> for <a href="../../model/02-definitions.html#capability">capability</a> definitions, and a <code class="language-plaintext highlighter-rouge">ThreatCatalog</code> for threats. The <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a> points back at the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> through a mapping reference, so an <a href="../../model/02-definitions.html#assessment">assessment</a> produces two files that reference each other. The examples below target Gemara <strong>v1.6.0</strong>.</p>
+
+<h2 id="walkthrough">Walkthrough</h2>
+
+<h3 id="step-0-define-scope">Step 0: Define Scope</h3>
+
+<p>Select a component or technology to assess (service, API, infrastructure component, or technology stack).</p>
+
+<p><strong>Leverage existing resources</strong>: Gemara supports importing entries from external catalogs so you don’t have to start from scratch. The FINOS Common Cloud Controls (CCC) Core <a href="https://github.com/finos/common-cloud-controls/releases/tag/core%2Fccc%2Fv2026.06-rc1">catalogs</a> define well-vetted capabilities and threats that apply broadly across cloud services. These pre-built items can help accelerate your <a href="../../model/02-definitions.html#assessment">assessment</a>.</p>
+
+<p>We will explore how this is leveraged below as we dive into our container management tool example (i.e., <code class="language-plaintext highlighter-rouge">SEC.SLAM.CM.CAP</code> for capabilities and <code class="language-plaintext highlighter-rouge">SEC.SLAM.CM</code> for threats).</p>
+
+<h3 id="step-1-setting-up-metadata">Step 1: Setting Up Metadata</h3>
+
+<p>Each artifact declares its own scope and mapping references. Key fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What It Is</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Display name for the <a href="../../model/02-definitions.html#catalog">catalog</a> (top-level field)</td>
+      <td>Human-readable label used in reports and tooling output</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.id</code></td>
+      <td>Identifier for this <a href="../../model/02-definitions.html#catalog">catalog</a></td>
+      <td>Other artifacts point at this <a href="../../model/02-definitions.html#catalog">catalog</a> by this value</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.type</code></td>
+      <td><code class="language-plaintext highlighter-rouge">CapabilityCatalog</code> or <code class="language-plaintext highlighter-rouge">ThreatCatalog</code></td>
+      <td>Identifies the artifact for <code class="language-plaintext highlighter-rouge">#CapabilityCatalog</code> or <code class="language-plaintext highlighter-rouge">#ThreatCatalog</code> validation (required)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.gemara-version</code></td>
+      <td>Spec version the artifact conforms to, here <code class="language-plaintext highlighter-rouge">"1.6.0"</code></td>
+      <td>Lets tooling pick the right schema and migration path (required)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">mapping-references</code> with <code class="language-plaintext highlighter-rouge">id: CCC</code></td>
+      <td>Pointer to the CCC Core <a href="../../model/02-definitions.html#catalog">catalog</a> release</td>
+      <td>Resolves the imported CCC <a href="../../model/02-definitions.html#capability">capability</a> and <a href="../../model/02-definitions.html#threat">threat</a> IDs used later</td>
+    </tr>
+    <tr>
+      <td>Top-level <code class="language-plaintext highlighter-rouge">imports</code> (Steps 2 and 3)</td>
+      <td>List of <code class="language-plaintext highlighter-rouge">#MultiEntryMapping</code> rows</td>
+      <td>Pulls in common capabilities and threats without redefining them; requires <code class="language-plaintext highlighter-rouge">mapping-references</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">groups</code></td>
+      <td>Categories that entries in this <a href="../../model/02-definitions.html#catalog">catalog</a> belong to</td>
+      <td>Required once a <a href="../../model/02-definitions.html#catalog">catalog</a> defines capabilities or threats; keeps large catalogs readable</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a> adds one more mapping reference: a pointer to the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a>, so its threats can link to the capabilities defined there (see Step 3).</p>
+
+<p><strong>Example (YAML)</strong>: <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> metadata:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Container Management Tool Capability Catalog</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">CapabilityCatalog</span>
+  <span class="na">gemara-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.6.0"</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">Capabilities of the container management tool under assessment</span>
+  <span class="na">author</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">example</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Example</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Human</span>
+  <span class="na">mapping-references</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">v2026.06-rc1</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases/download/core%2Fccc%2Fv2026.06-rc1/capabilities.yaml</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+        <span class="s">and threat models maintained by FINOS.</span>
+</code></pre></div></div>
+
+<h3 id="step-2-identify-capabilities-capability-catalog">Step 2: Identify Capabilities (Capability catalog)</h3>
+
+<p>Capabilities are the core functions or features within the scope. In Gemara they live in a <code class="language-plaintext highlighter-rouge">CapabilityCatalog</code>.</p>
+
+<p><strong>Start with the imported capabilities</strong> you can leverage from FINOS CCC. Ask: “Which common cloud capabilities does this technology have?”</p>
+
+<p>A container management tool actively reaches out to registries to pull images and configuration. Since CCC Core already defines that as <strong>CP29</strong> (Active Ingestion), we import it rather than redefining it. Image tags also function as version identifiers: the tool resolves a tag like <code class="language-plaintext highlighter-rouge">latest</code> or <code class="language-plaintext highlighter-rouge">v1.0</code> to a specific image. CCC Core defines that behavior as <strong>CP18</strong> (Resource Versioning), so we import that as well.</p>
+
+<p><strong>Example (YAML)</strong>: <code class="language-plaintext highlighter-rouge">imports</code> on the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">imports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP29</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Active Ingestion</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP18</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Resource Versioning</span>
+</code></pre></div></div>
+
+<p><strong>Then, define specific capabilities</strong> unique to your target. Required fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Yes</td>
+      <td>Unique identifier. The schema enforces no pattern; this guide uses <code class="language-plaintext highlighter-rouge">ORG.PROJ.COMPONENT.CAP##</code> as a convention</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Yes</td>
+      <td>Clear name for the <a href="../../model/02-definitions.html#capability">capability</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">description</code></td>
+      <td>Yes</td>
+      <td>What this <a href="../../model/02-definitions.html#capability">capability</a> does</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">group</code></td>
+      <td>Yes</td>
+      <td><code class="language-plaintext highlighter-rouge">id</code> of a <strong>group</strong> declared in this <a href="../../model/02-definitions.html#catalog">catalog</a>’s <code class="language-plaintext highlighter-rouge">groups</code> list</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example (YAML)</strong>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">image-management</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Management</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Capabilities for retrieving, resolving, and running container images.</span>
+<span class="na">capabilities</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Retrieval by Tag</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Ability to retrieve container images from registries using mutable tag names</span>
+      <span class="s">(e.g., 'latest', 'v1.0').</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">image-management</span>
+</code></pre></div></div>
+
+<h3 id="step-3-identify-threats-threat-catalog">Step 3: Identify Threats (Threat catalog)</h3>
+
+<p><strong><a href="../../model/02-definitions.html#threat">Threats</a></strong> are specific ways <strong><a href="../../model/02-definitions.html#capability">capabilities</a></strong> can be misused, exploited, or cause problems. For each <strong><a href="../../model/02-definitions.html#capability">capability</a></strong>, identify potential <strong>threats</strong>. These go in the <code class="language-plaintext highlighter-rouge">ThreatCatalog</code>, which points back at the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> through a mapping reference.</p>
+
+<p><strong>Example (YAML)</strong>: <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a> mapping references:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">mapping-references</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s">v2026.06-rc1</span>
+    <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+      <span class="s">and threat models maintained by FINOS.</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Container Management Tool Capability Catalog</span>
+    <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Capabilities defined for the container management tool, exploited by</span>
+      <span class="s">the threats in this catalog.</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong>Note:</strong> When a mapping reference has no <code class="language-plaintext highlighter-rouge">url</code>, its <code class="language-plaintext highlighter-rouge">id</code> is the referenced artifact’s <code class="language-plaintext highlighter-rouge">metadata.id</code>. That is why the second reference uses <code class="language-plaintext highlighter-rouge">SEC.SLAM.CM.CAP</code>.</p>
+</blockquote>
+
+<p><strong>Check for imported threats first.</strong> As with <strong><a href="../../model/02-definitions.html#capability">capabilities</a></strong>, review the CCC Core <a href="../../model/02-definitions.html#catalog">catalog</a> for threats linked to the capabilities you imported. If a <a href="../../model/02-definitions.html#threat">threat</a> fits your scope, import it. In this example, CCC Core defines <strong>TH14</strong> (“Older Resource Versions are Used”) which is linked to <strong>CP18</strong>. It applies because mutable image tags let the tool resolve to a stale or compromised version.</p>
+
+<p>Imported threats and the capabilities you reference from the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> share the single top-level <code class="language-plaintext highlighter-rouge">imports</code> list.</p>
+
+<p><strong>Example (YAML)</strong>: <code class="language-plaintext highlighter-rouge">imports</code> on the <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">imports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Older Resource Versions are Used</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Image Retrieval by Tag</span>
+</code></pre></div></div>
+
+<p><strong>Then, define specific threats</strong> unique to your target. Required fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Yes</td>
+      <td>Unique identifier. The schema enforces no pattern; this guide uses <code class="language-plaintext highlighter-rouge">ORG.PROJ.COMPONENT.THR##</code> as a convention</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Yes</td>
+      <td>Short name for the <a href="../../model/02-definitions.html#threat">threat</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">description</code></td>
+      <td>Yes</td>
+      <td>What goes wrong and why it matters</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">group</code></td>
+      <td>Yes</td>
+      <td><code class="language-plaintext highlighter-rouge">id</code> of a <strong>group</strong> declared in this <a href="../../model/02-definitions.html#catalog">catalog</a>’s <code class="language-plaintext highlighter-rouge">groups</code> list</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">capabilities</code></td>
+      <td>Yes</td>
+      <td>Links this <a href="../../model/02-definitions.html#threat">threat</a> to the capabilities it exploits, by mapping reference</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">vectors</code></td>
+      <td>No</td>
+      <td>Optional link to <a href="../../model/02-definitions.html#vector">vector</a> <a href="../../model/02-definitions.html#catalog">catalog</a> entries</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">actors</code></td>
+      <td>No</td>
+      <td>Optional <a href="../../model/02-definitions.html#threat">threat</a> actors (<code class="language-plaintext highlighter-rouge">#Actor</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example (YAML)</strong>: a custom <a href="../../model/02-definitions.html#threat">threat</a> (<em>Container Image Tampering or Poisoning</em>) linked to the capabilities it exploits: <strong>CCC.Core.CP29</strong> (Active Ingestion), <strong>CCC.Core.CP18</strong> (Resource Versioning), and <strong>SEC.SLAM.CM.CAP01</strong> (Image Retrieval by Tag) via the <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> reference (<code class="language-plaintext highlighter-rouge">SEC.SLAM.CM.CAP</code>).</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">image-integrity</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Integrity</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Threats to the authenticity and provenance of container images the tool</span>
+      <span class="s">retrieves and runs.</span>
+<span class="na">threats</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.THR01</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Container Image Tampering or Poisoning</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Attackers may replace a legitimately published image tag with a malicious image</span>
+      <span class="s">by exploiting tag mutability in image registries, especially when the container</span>
+      <span class="s">management tool retrieves images by tag name rather than digest. This enables</span>
+      <span class="s">unauthorized access, data exfiltration, and system compromise.</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">image-integrity</span>
+    <span class="na">capabilities</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP29</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP18</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+</code></pre></div></div>
+
+<h3 id="step-4-validate">Step 4: Validate</h3>
+
+<p>The final <a href="../../model/02-definitions.html#capability">capability</a> <a href="../../model/02-definitions.html#catalog">catalog</a> should look something like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Container Management Tool Capability Catalog</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">CapabilityCatalog</span>
+  <span class="na">gemara-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.6.0"</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">Capabilities of the container management tool under assessment</span>
+  <span class="na">author</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">example</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Example</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Human</span>
+  <span class="na">mapping-references</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">v2026.06-rc1</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases/download/core%2Fccc%2Fv2026.06-rc1/capabilities.yaml</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+        <span class="s">and threat models maintained by FINOS.</span>
+<span class="na">imports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP29</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Active Ingestion</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP18</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Resource Versioning</span>
+<span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">image-management</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Management</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Capabilities for retrieving, resolving, and running container images.</span>
+<span class="na">capabilities</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Retrieval by Tag</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Ability to retrieve container images from registries using mutable tag names</span>
+      <span class="s">(e.g., 'latest', 'v1.0').</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">image-management</span>
+</code></pre></div></div>
+
+<p>And the final <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a> like this:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s">Container Management Tool Threat Catalog</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">ThreatCatalog</span>
+  <span class="na">gemara-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.6.0"</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s">Threat catalog for container management tool security assessment</span>
+  <span class="na">author</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">example</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s">Example</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Human</span>
+  <span class="na">mapping-references</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">v2026.06-rc1</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+        <span class="s">and threat models maintained by FINOS.</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Container Management Tool Capability Catalog</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Capabilities defined for the container management tool, exploited by</span>
+        <span class="s">the threats in this catalog.</span>
+<span class="na">imports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Older Resource Versions are Used</span>
+  <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+    <span class="na">entries</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+        <span class="na">remarks</span><span class="pi">:</span> <span class="s">Image Retrieval by Tag</span>
+<span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">image-integrity</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Image Integrity</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Threats to the authenticity and provenance of container images the tool</span>
+      <span class="s">retrieves and runs.</span>
+<span class="na">threats</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.THR01</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s">Container Image Tampering or Poisoning</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="s">Attackers may replace a legitimately published image tag with a malicious image</span>
+      <span class="s">by exploiting tag mutability in image registries, especially when the container</span>
+      <span class="s">management tool retrieves images by tag name rather than digest. This enables</span>
+      <span class="s">unauthorized access, data exfiltration, and system compromise.</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s">image-integrity</span>
+    <span class="na">capabilities</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP29</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.CP18</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">SEC.SLAM.CM.CAP01</span>
+</code></pre></div></div>
+
+<p>For a longer example with more CCC imports and additional threats, see <a href="capabilities.yaml">capabilities.yaml</a> and <a href="threat-catalog.yaml">threat-catalog.yaml</a>.</p>
+
+<p><strong>Validation commands:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>go <span class="nb">install </span>cuelang.org/go/cmd/cue@latest
+cue vet <span class="nt">-c</span> <span class="nt">-d</span> <span class="s1">'#CapabilityCatalog'</span> github.com/gemaraproj/gemara@v1.6.0 your-capabilities.yaml
+cue vet <span class="nt">-c</span> <span class="nt">-d</span> <span class="s1">'#ThreatCatalog'</span> github.com/gemaraproj/gemara@v1.6.0 your-threat-catalog.yaml
+</code></pre></div></div>
+
+<p>No output means the artifact is valid. Swap <code class="language-plaintext highlighter-rouge">@v1.6.0</code> for <code class="language-plaintext highlighter-rouge">@latest</code> to validate against the newest published schema.</p>
+
+<h2 id="whats-next">What’s Next</h2>
+
+<p>Create a Gemara <a href="../../model/02-definitions.html#control">control</a> <a href="../../model/02-definitions.html#catalog">catalog</a> that maps security controls to these threats using the <a href="control-catalog-guide">Control Catalog Guide</a>.</p>
+
+<p><strong>Layer 2 schema documentation:</strong></p>
+<ul>
+  <li><a href="https://gemara.openssf.org/schema/capabilitycatalog.html">Capability Catalog</a></li>
+  <li><a href="https://gemara.openssf.org/schema/threatcatalog.html">Threat Catalog</a></li>
+  <li><a href="https://gemara.openssf.org/schema/controlcatalog.html">Control Catalog</a></li>
+</ul>
+
+  </div>
+
+</article>
+
+        </div>
+      </main>
+    </div><footer class="site-footer h-card">
+  <data class="u-url" value="/pr-preview/pr-1/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">Gemara Authors</li>
+          <li><a class="u-email" href="mailto:gemara+subscribe@lists.openssf.org">gemara+subscribe@lists.openssf.org</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability.</p>
+      </div>
+    </div><ul class="social-media-list"><li>
+          <a href="https://github.com/ossf" title="" aria-label="">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://x.com/openssf" title="" aria-label="">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://bsky.app/profile/openssf.org" title="" aria-label="">
+            <i class="fa-brands fa-bluesky" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://www.linkedin.com/company/openssf/" title="" aria-label="">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li></ul><div class="footer-copyright">
+        Copyright © Gemara contributors, a Series of LF Projects, LLC.
+        For website terms of use, trademark policy, and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+        This site is open source. View or contribute at <a href="https://github.com/gemaraproj/gemara">GitHub</a>.
+    </div>
+
+</div>
+
+</footer>
+<script src="/pr-preview/pr-1/assets/js/theme-toggle.js"></script>
+    <script src="/pr-preview/pr-1/assets/js/search.js" defer></script>
+  </body>
+
+</html>

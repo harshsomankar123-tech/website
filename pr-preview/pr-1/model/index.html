@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Gemara | GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability.</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Gemara" />
+<meta name="author" content="Gemara Authors" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability." />
+<meta name="twitter:description" property="og:description" content="GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability." />
+<link rel="canonical" href="https://gemara.openssf.org/pr-preview/pr-1/model/" />
+<meta property="og:url" content="https://gemara.openssf.org/pr-preview/pr-1/model/" />
+<meta property="og:site_name" content="Gemara" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Gemara" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Gemara Authors"},"description":"GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability.","headline":"Gemara","url":"https://gemara.openssf.org/pr-preview/pr-1/model/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="/pr-preview/pr-1/assets/css/style.css">
+    <link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+
+    <!-- Theme Toggle - inline script to prevent flash of wrong theme -->
+    <script>
+      (function() {
+        function getSystemPreference() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        }
+        function getTheme() {
+          try {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || stored === 'light') {
+              return stored;
+            }
+          } catch (e) {}
+          return getSystemPreference();
+        }
+        const theme = getTheme();
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <div class="header-top">
+      <div class="site-logo">
+        <a href="https://openssf.org" target="_blank" rel="noopener noreferrer">
+          <img src="/pr-preview/pr-1/assets/logo.svg" alt="OpenSSF" height="90" />
+        </a>
+      </div>
+
+      <div class="site-branding">
+        <h1 class="site-title">
+          <a href="/pr-preview/pr-1/" rel="author">Gemara</a>
+        </h1>
+        <p class="site-tagline">GRC Engineering Model for Automated Risk Assessment</p>
+      </div>
+
+      <div class="header-actions">
+        <a class="site-github" href="https://github.com/gemaraproj/gemara" target="_blank" rel="noopener noreferrer" aria-label="View Gemara on GitHub" title="View on GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+      </div>
+    </div><nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger"><a class="page-link" href="/pr-preview/pr-1/">Home</a><details class="nav-dropdown">
+            <summary class="page-link">Community</summary>
+            <div class="nav-dropdown-menu"><a class="page-link" href="/pr-preview/pr-1/community/">Overview</a><a class="page-link" href="/pr-preview/pr-1/community/contributing">Contributing</a><a class="page-link" href="/pr-preview/pr-1/community/maintainers">Maintainers</a></div>
+          </details><a class="page-link" href="/pr-preview/pr-1/roadmap">Roadmap</a><a class="page-link" href="/pr-preview/pr-1/tutorials/">Tutorials</a><a class="page-link" href="/pr-preview/pr-1/faq/">FAQ</a><a class="page-link" href="/pr-preview/pr-1/adrs/">ADRs</a></div>
+    </nav></div>
+</header>
+<div class="main-wrapper"><aside class="site-sidebar" role="complementary">
+  <div class="sidebar-content">
+    <form class="sidebar-search" role="search" onsubmit="return false;">
+      <label for="search-input" class="sr-only">Search the site</label>
+      <input
+        type="search"
+        id="search-input"
+        class="sidebar-search-input"
+        placeholder="Search&hellip;"
+        autocomplete="off"
+        spellcheck="false"
+        data-index="/pr-preview/pr-1/search.json"
+      />
+      <ul id="search-results" class="sidebar-search-results" hidden></ul>
+    </form>
+
+    <h3 class="sidebar-title">Quick Links</h3>
+    <nav class="sidebar-nav"><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/model/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Model</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/model/01-scope.html" class="sidebar-link sidebar-nested-link">Scope</a><a href="/pr-preview/pr-1/model/02-definitions.html" class="sidebar-link sidebar-nested-link">Definitions</a><a href="/pr-preview/pr-1/model/03-foundational-concepts.html" class="sidebar-link sidebar-nested-link">Foundational Concepts</a><a href="/pr-preview/pr-1/model/04-the-model.html" class="sidebar-link sidebar-nested-link">The Model</a><a href="/pr-preview/pr-1/model/05-definition-layers.html" class="sidebar-link sidebar-nested-link">The Definition Layers (1, 2, 3)</a><a href="/pr-preview/pr-1/model/05.1-Layer-1.html" class="sidebar-link sidebar-nested-link">Layer 1</a><a href="/pr-preview/pr-1/model/05.2-Layer-2.html" class="sidebar-link sidebar-nested-link">Layer 2</a><a href="/pr-preview/pr-1/model/05.3-Layer-3.html" class="sidebar-link sidebar-nested-link">Layer 3</a><a href="/pr-preview/pr-1/model/06-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Sensitive Activities (Layer 4)</a><a href="/pr-preview/pr-1/model/07.1-measurement-layers.html" class="sidebar-link sidebar-nested-link">The Measurement Layers (5, 6, 7)</a><a href="/pr-preview/pr-1/model/07.2-Layer-5.html" class="sidebar-link sidebar-nested-link">Layer 5</a><a href="/pr-preview/pr-1/model/07.3-Layer-6.html" class="sidebar-link sidebar-nested-link">Layer 6</a><a href="/pr-preview/pr-1/model/07.4-Layer-7.html" class="sidebar-link sidebar-nested-link">Layer 7</a><a href="/pr-preview/pr-1/model/08-applying.html" class="sidebar-link sidebar-nested-link">The Need for Machine-Optimized Documentation Standards</a><a href="/pr-preview/pr-1/model/09-conclusion.html" class="sidebar-link sidebar-nested-link">Conclusion</a><a href="/pr-preview/pr-1/model/10-acknowledgement.html" class="sidebar-link sidebar-nested-link">Authors &amp; Acknowledgements</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/schema/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Schemas</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/schema/auditlog.html" class="sidebar-link sidebar-nested-link">Audit Log</a><a href="/pr-preview/pr-1/schema/base.html" class="sidebar-link sidebar-nested-link">Aliases &amp; Base Types</a><a href="/pr-preview/pr-1/schema/capabilitycatalog.html" class="sidebar-link sidebar-nested-link">Capability Catalog</a><a href="/pr-preview/pr-1/schema/controlcatalog.html" class="sidebar-link sidebar-nested-link">Control Catalog</a><a href="/pr-preview/pr-1/schema/enforcementlog.html" class="sidebar-link sidebar-nested-link">Enforcement Log</a><a href="/pr-preview/pr-1/schema/evaluationlog.html" class="sidebar-link sidebar-nested-link">Evaluation Log</a><a href="/pr-preview/pr-1/schema/guidancecatalog.html" class="sidebar-link sidebar-nested-link">Guidance Catalog</a><a href="/pr-preview/pr-1/schema/lexicon.html" class="sidebar-link sidebar-nested-link">Lexicon</a><a href="/pr-preview/pr-1/schema/mapping-inline.html" class="sidebar-link sidebar-nested-link">Mapping Primitives</a><a href="/pr-preview/pr-1/schema/mappingdocument.html" class="sidebar-link sidebar-nested-link">Mapping Document</a><a href="/pr-preview/pr-1/schema/metadata.html" class="sidebar-link sidebar-nested-link">Metadata</a><a href="/pr-preview/pr-1/schema/policy.html" class="sidebar-link sidebar-nested-link">Policy</a><a href="/pr-preview/pr-1/schema/principlecatalog.html" class="sidebar-link sidebar-nested-link">Principle Catalog</a><a href="/pr-preview/pr-1/schema/riskcatalog.html" class="sidebar-link sidebar-nested-link">Risk Catalog</a><a href="/pr-preview/pr-1/schema/threatcatalog.html" class="sidebar-link sidebar-nested-link">Threat Catalog</a><a href="/pr-preview/pr-1/schema/vectorcatalog.html" class="sidebar-link sidebar-nested-link">Vector Catalog</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/sdk/" class="sidebar-summary-link" onclick="event.stopPropagation();">The SDKs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/sdk/go-sdk.html" class="sidebar-link sidebar-nested-link">Go SDK</a><a href="/pr-preview/pr-1/sdk/python-sdk.html" class="sidebar-link sidebar-nested-link">Python SDK</a></div>
+              </details><details class="sidebar-details">
+            <summary class="sidebar-summary">
+              <a href="/pr-preview/pr-1/tutorials/" class="sidebar-summary-link" onclick="event.stopPropagation();">Tutorials</a>
+            </summary>
+            <div class="sidebar-nested"><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Threats &amp; Controls
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/controls/threat-assessment-guide" class="sidebar-link sidebar-nested-link">Threat Assessment Guide</a><a href="/pr-preview/pr-1/tutorials/controls/control-catalog-guide" class="sidebar-link sidebar-nested-link">Control Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Guidance
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/guidance/guidance-guide" class="sidebar-link sidebar-nested-link">Guidance Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Policy
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/policy/risk-catalog-guide" class="sidebar-link sidebar-nested-link">Risk Catalog Guide</a><a href="/pr-preview/pr-1/tutorials/policy/policy-guide" class="sidebar-link sidebar-nested-link">Policy Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Mapping
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/mapping/mapping-document-guide" class="sidebar-link sidebar-nested-link">Mapping Document Guide</a></div>
+                  </details></div>
+          </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/adrs/" class="sidebar-summary-link" onclick="event.stopPropagation();">ADRs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/adrs/0001-logical-model.html" class="sidebar-link sidebar-nested-link">Create A Logical Model for GRC Engineering Activities</a><a href="/pr-preview/pr-1/adrs/0002-model-schemas.html" class="sidebar-link sidebar-nested-link">Create Schemas for Each Layer in the Logical Model</a><a href="/pr-preview/pr-1/adrs/0003-go-sdk-layer-2.html" class="sidebar-link sidebar-nested-link">Create Go SDK to Support &quot;Layer 2&quot; Authors and Consumers</a><a href="/pr-preview/pr-1/adrs/0004-go-sdk-layer-4.html" class="sidebar-link sidebar-nested-link">Extend Go SDK for &quot;Layer 4&quot; Based on the Privateer Project</a><a href="/pr-preview/pr-1/adrs/0005-cuegen-go.html" class="sidebar-link sidebar-nested-link">Enforce Automated Alignment from Schemas to SDK</a><a href="/pr-preview/pr-1/adrs/0006-unified-package-structure.html" class="sidebar-link sidebar-nested-link">Unified Go SDK Package Structure</a><a href="/pr-preview/pr-1/adrs/0007-isolate-concepts-from-code.html" class="sidebar-link sidebar-nested-link">Isolate Concepts from Code</a><a href="/pr-preview/pr-1/adrs/0008-model-lockin.html" class="sidebar-link sidebar-nested-link">Finish Development on the Model and Common Terms</a><a href="/pr-preview/pr-1/adrs/0009-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Formalize Sensitive Activities as a Layer</a><a href="/pr-preview/pr-1/adrs/0010-dual-ladder-layers.html" class="sidebar-link sidebar-nested-link">Dual-ladders Within Each Layer</a><a href="/pr-preview/pr-1/adrs/0011-definition-measurement.html" class="sidebar-link sidebar-nested-link">Adjust &quot;Upper&quot; and &quot;Lower&quot; Layer Descriptors into &quot;Definition&quot; and &quot;Measurement&quot;</a><a href="/pr-preview/pr-1/adrs/0012-schema-types.html" class="sidebar-link sidebar-nested-link">Refine Terms for Top-level Schema Types</a><a href="/pr-preview/pr-1/adrs/0013-enum-casing-conventions.html" class="sidebar-link sidebar-nested-link">Enum Casing Conventions</a><a href="/pr-preview/pr-1/adrs/0014-mapping-boundaries.html" class="sidebar-link sidebar-nested-link">Mapping Boundaries</a><a href="/pr-preview/pr-1/adrs/0015-nest-imported-fields.html" class="sidebar-link sidebar-nested-link">Nest Imported Fields Under imports Struct</a><a href="/pr-preview/pr-1/adrs/0016-base-log-type.html" class="sidebar-link sidebar-nested-link">Base Log Type</a><a href="/pr-preview/pr-1/adrs/0017-base-catalog-type.html" class="sidebar-link sidebar-nested-link">Base Catalog Type</a><a href="/pr-preview/pr-1/adrs/0018-promote-nested-concepts-to-catalogs.html" class="sidebar-link sidebar-nested-link">Promote Nested Concepts to First-class Catalogs</a><a href="/pr-preview/pr-1/adrs/0019-promote-capabilities.html" class="sidebar-link sidebar-nested-link">Promote Capabilities to a First-class Catalog</a><a href="/pr-preview/pr-1/adrs/0020-groups.html" class="sidebar-link sidebar-nested-link">Merge Family and Category into Group</a><a href="/pr-preview/pr-1/adrs/0021-lexicon.html" class="sidebar-link sidebar-nested-link">New schema for Lexicon artifacts</a><a href="/pr-preview/pr-1/adrs/0022-evidence-on-assessment-log.html" class="sidebar-link sidebar-nested-link">Add Evidence to AssessmentLog</a></div>
+              </details></nav>
+  </div>
+</aside>
+<main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title"></h1>
+  </header>
+
+  <div class="post-content">
+    <h1 id="the-gemara-model">The Gemara Model</h1>
+
+<p>Integrating <a href="02-definitions.html#governance">Governance</a>, <a href="02-definitions.html#risk">Risk</a>, and <a href="02-definitions.html#compliance">Compliance</a> (<a href="02-definitions.html#grc">GRC</a>) into software development pipelines presents a formidable challenge.</p>
+
+<p>Traditional, often manual, approaches to <a href="02-definitions.html#grc">GRC</a> are ill-suited for the pace of contemporary development. This has given rise to the discipline of <a href="02-definitions.html#grc">GRC</a> Engineering, which strategically applies engineering principles to <a href="02-definitions.html#grc">GRC</a> processes to make them more efficient and integrated. Its ultimate goal is to achieve Automated <a href="02-definitions.html#governance">Governance</a>, where <a href="02-definitions.html#compliance">compliance</a> tracking is embedded throughout the deployment pipeline, acting as a required quality gate before code reaches production.</p>
+
+<p>The need for a structured approach to this challenge was a key observation during the creation of the CNCF’s Automated <a href="02-definitions.html#governance">Governance</a> Maturity Model (AGMM). The authors of that document observed that in a fully automated <a href="02-definitions.html#governance">governance</a> program, maturity can be measured in at least four different areas: “<a href="02-definitions.html#policy">Policy</a>, <a href="02-definitions.html#evaluation">Evaluation</a>, <a href="02-definitions.html#enforcement">Enforcement</a>, and <a href="02-definitions.html#audit">Audit</a>.” This foundational insight provides a lexicon for describing the core activities of a secure software factory. The Gemara model took shape as industry projects began to apply this lexicon.</p>
+
+<p>The FINOS Common Cloud Controls (CCC) and the OpenSSF’s Open Source Project Security Baseline (OSPSB) projects adopted the AGMM’s language but identified the need for greater granularity. They added two more conceptual areas to distinguish between high-level, abstract recommendations and technology-specific objectives. This practical expansion from four concepts to six areas that build upon each other formed the genesis of Gemara’s layered model.</p>
+
+<p>The Gemara model was created to codify these concepts. As the <a href="02-definitions.html#grc">GRC</a> Engineering Model for Automated <a href="02-definitions.html#risk-assessment">Risk Assessment</a>, its core purpose is to provide a logical model to describe the categories of <a href="02-definitions.html#compliance">compliance</a> activities, how they interact, and how to enable automated interoperability between them.</p>
+
+<h2 id="at-a-glance">At a Glance</h2>
+
+<p>Gemara organizes <a href="02-definitions.html#compliance">compliance</a> activities into seven categorical layers, each building upon the previous.</p>
+
+<p>Layers 1 through 3 provide definitions to inform the execution of sensitive activities, while layers 5 through 7 provide measurements to inform next steps.</p>
+
+<div class="gemara-layer-diagram">
+  <div class="layer-banner layer-7">
+    <span class="layer-number">7</span>
+    <div class="layer-content">
+      <div class="layer-title">Audit &amp; Continuous Monitoring</div>
+      <div class="layer-description">Efficacy review of all previous outputs</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-6">
+    <span class="layer-number">6</span>
+    <div class="layer-content">
+      <div class="layer-title">Preventive &amp; Remediative Enforcement</div>
+      <div class="layer-description">Corrective actions for noncompliance</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-5">
+    <span class="layer-number">5</span>
+    <div class="layer-content">
+      <div class="layer-title">Intent &amp; Behavior Evaluation</div>
+      <div class="layer-description">Inspection of sensitive activities</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-4">
+    <span class="layer-number">4</span>
+    <div class="layer-content">
+      <div class="layer-title">Sensitive Activities</div>
+      <div class="layer-description">Actions that might introduce risk</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-3">
+    <span class="layer-number">3</span>
+    <div class="layer-content">
+      <div class="layer-title">Risk &amp; Policy</div>
+      <div class="layer-description">Organization-specific rules</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-2">
+    <span class="layer-number">2</span>
+    <div class="layer-content">
+      <div class="layer-title">Threats &amp; Controls</div>
+      <div class="layer-description">Technology-specific objectives</div>
+    </div>
+  </div>
+  <div class="layer-banner layer-1">
+    <span class="layer-number">1</span>
+    <div class="layer-content">
+      <div class="layer-title">Vectors &amp; Guidance</div>
+      <div class="layer-description">Foundational knowledge or regulations</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="model-stability">Model Stability</h2>
+
+<p>This model is intentionally stable. Changes are rare and require significant community discussion, as the model reflects fundamental organizational patterns in <a href="02-definitions.html#grc">GRC</a> activities. As noted in ADR-0008, the model is closed to modification. This enables downstream resources to build upon the foundational concepts without concern about essential terms shifting later.</p>
+
+<hr />
+
+<h2 id="continue-reading">Continue Reading</h2>
+
+<ul>
+  <li><strong>&gt; Next Page</strong>: <a href="./01-scope.html">Scope</a></li>
+</ul>
+
+<hr />
+
+  </div>
+
+</article>
+
+        </div>
+      </main>
+    </div><footer class="site-footer h-card">
+  <data class="u-url" value="/pr-preview/pr-1/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">Gemara Authors</li>
+          <li><a class="u-email" href="mailto:gemara+subscribe@lists.openssf.org">gemara+subscribe@lists.openssf.org</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability.</p>
+      </div>
+    </div><ul class="social-media-list"><li>
+          <a href="https://github.com/ossf" title="" aria-label="">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://x.com/openssf" title="" aria-label="">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://bsky.app/profile/openssf.org" title="" aria-label="">
+            <i class="fa-brands fa-bluesky" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://www.linkedin.com/company/openssf/" title="" aria-label="">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li></ul><div class="footer-copyright">
+        Copyright © Gemara contributors, a Series of LF Projects, LLC.
+        For website terms of use, trademark policy, and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+        This site is open source. View or contribute at <a href="https://github.com/gemaraproj/gemara">GitHub</a>.
+    </div>
+
+</div>
+
+</footer>
+<script src="/pr-preview/pr-1/assets/js/theme-toggle.js"></script>
+    <script src="/pr-preview/pr-1/assets/js/search.js" defer></script>
+  </body>
+
+</html>

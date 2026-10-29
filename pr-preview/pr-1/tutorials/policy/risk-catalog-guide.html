@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Risk Catalog Guide | Gemara</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Risk Catalog Guide" />
+<meta name="author" content="Gemara Authors" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Step-by-step guide to creating Gemara-compatible risk catalogs" />
+<meta name="twitter:description" property="og:description" content="Step-by-step guide to creating Gemara-compatible risk catalogs" />
+<link rel="canonical" href="https://gemara.openssf.org/pr-preview/pr-1/tutorials/policy/risk-catalog-guide.html" />
+<meta property="og:url" content="https://gemara.openssf.org/pr-preview/pr-1/tutorials/policy/risk-catalog-guide.html" />
+<meta property="og:site_name" content="Gemara" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Risk Catalog Guide" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Gemara Authors"},"description":"Step-by-step guide to creating Gemara-compatible risk catalogs","headline":"Risk Catalog Guide","url":"https://gemara.openssf.org/pr-preview/pr-1/tutorials/policy/risk-catalog-guide.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+    <link rel="stylesheet" href="/pr-preview/pr-1/assets/css/style.css">
+    <link id="fa-stylesheet" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="/pr-preview/pr-1/assets/favicon.ico">
+
+    <!-- Theme Toggle - inline script to prevent flash of wrong theme -->
+    <script>
+      (function() {
+        function getSystemPreference() {
+          return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            ? 'dark'
+            : 'light';
+        }
+        function getTheme() {
+          try {
+            const stored = localStorage.getItem('theme');
+            if (stored === 'dark' || stored === 'light') {
+              return stored;
+            }
+          } catch (e) {}
+          return getSystemPreference();
+        }
+        const theme = getTheme();
+        if (theme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body><header class="site-header" role="banner">
+  <div class="wrapper">
+    <div class="header-top">
+      <div class="site-logo">
+        <a href="https://openssf.org" target="_blank" rel="noopener noreferrer">
+          <img src="/pr-preview/pr-1/assets/logo.svg" alt="OpenSSF" height="90" />
+        </a>
+      </div>
+
+      <div class="site-branding">
+        <h1 class="site-title">
+          <a href="/pr-preview/pr-1/" rel="author">Gemara</a>
+        </h1>
+        <p class="site-tagline">GRC Engineering Model for Automated Risk Assessment</p>
+      </div>
+
+      <div class="header-actions">
+        <a class="site-github" href="https://github.com/gemaraproj/gemara" target="_blank" rel="noopener noreferrer" aria-label="View Gemara on GitHub" title="View on GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+      </div>
+    </div><nav class="site-nav">
+      <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+      <label for="nav-trigger">
+        <span class="menu-icon">
+          <svg viewBox="0 0 18 15" width="18px" height="15px">
+            <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+          </svg>
+        </span>
+      </label>
+
+      <div class="trigger"><a class="page-link" href="/pr-preview/pr-1/">Home</a><details class="nav-dropdown">
+            <summary class="page-link">Community</summary>
+            <div class="nav-dropdown-menu"><a class="page-link" href="/pr-preview/pr-1/community/">Overview</a><a class="page-link" href="/pr-preview/pr-1/community/contributing">Contributing</a><a class="page-link" href="/pr-preview/pr-1/community/maintainers">Maintainers</a></div>
+          </details><a class="page-link" href="/pr-preview/pr-1/roadmap">Roadmap</a><a class="page-link" href="/pr-preview/pr-1/tutorials/">Tutorials</a><a class="page-link" href="/pr-preview/pr-1/faq/">FAQ</a><a class="page-link" href="/pr-preview/pr-1/adrs/">ADRs</a></div>
+    </nav></div>
+</header>
+<div class="main-wrapper"><aside class="site-sidebar" role="complementary">
+  <div class="sidebar-content">
+    <form class="sidebar-search" role="search" onsubmit="return false;">
+      <label for="search-input" class="sr-only">Search the site</label>
+      <input
+        type="search"
+        id="search-input"
+        class="sidebar-search-input"
+        placeholder="Search&hellip;"
+        autocomplete="off"
+        spellcheck="false"
+        data-index="/pr-preview/pr-1/search.json"
+      />
+      <ul id="search-results" class="sidebar-search-results" hidden></ul>
+    </form>
+
+    <h3 class="sidebar-title">Quick Links</h3>
+    <nav class="sidebar-nav"><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/model/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Model</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/model/01-scope.html" class="sidebar-link sidebar-nested-link">Scope</a><a href="/pr-preview/pr-1/model/02-definitions.html" class="sidebar-link sidebar-nested-link">Definitions</a><a href="/pr-preview/pr-1/model/03-foundational-concepts.html" class="sidebar-link sidebar-nested-link">Foundational Concepts</a><a href="/pr-preview/pr-1/model/04-the-model.html" class="sidebar-link sidebar-nested-link">The Model</a><a href="/pr-preview/pr-1/model/05-definition-layers.html" class="sidebar-link sidebar-nested-link">The Definition Layers (1, 2, 3)</a><a href="/pr-preview/pr-1/model/05.1-Layer-1.html" class="sidebar-link sidebar-nested-link">Layer 1</a><a href="/pr-preview/pr-1/model/05.2-Layer-2.html" class="sidebar-link sidebar-nested-link">Layer 2</a><a href="/pr-preview/pr-1/model/05.3-Layer-3.html" class="sidebar-link sidebar-nested-link">Layer 3</a><a href="/pr-preview/pr-1/model/06-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Sensitive Activities (Layer 4)</a><a href="/pr-preview/pr-1/model/07.1-measurement-layers.html" class="sidebar-link sidebar-nested-link">The Measurement Layers (5, 6, 7)</a><a href="/pr-preview/pr-1/model/07.2-Layer-5.html" class="sidebar-link sidebar-nested-link">Layer 5</a><a href="/pr-preview/pr-1/model/07.3-Layer-6.html" class="sidebar-link sidebar-nested-link">Layer 6</a><a href="/pr-preview/pr-1/model/07.4-Layer-7.html" class="sidebar-link sidebar-nested-link">Layer 7</a><a href="/pr-preview/pr-1/model/08-applying.html" class="sidebar-link sidebar-nested-link">The Need for Machine-Optimized Documentation Standards</a><a href="/pr-preview/pr-1/model/09-conclusion.html" class="sidebar-link sidebar-nested-link">Conclusion</a><a href="/pr-preview/pr-1/model/10-acknowledgement.html" class="sidebar-link sidebar-nested-link">Authors &amp; Acknowledgements</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/schema/" class="sidebar-summary-link" onclick="event.stopPropagation();">The Schemas</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/schema/auditlog.html" class="sidebar-link sidebar-nested-link">Audit Log</a><a href="/pr-preview/pr-1/schema/base.html" class="sidebar-link sidebar-nested-link">Aliases &amp; Base Types</a><a href="/pr-preview/pr-1/schema/capabilitycatalog.html" class="sidebar-link sidebar-nested-link">Capability Catalog</a><a href="/pr-preview/pr-1/schema/controlcatalog.html" class="sidebar-link sidebar-nested-link">Control Catalog</a><a href="/pr-preview/pr-1/schema/enforcementlog.html" class="sidebar-link sidebar-nested-link">Enforcement Log</a><a href="/pr-preview/pr-1/schema/evaluationlog.html" class="sidebar-link sidebar-nested-link">Evaluation Log</a><a href="/pr-preview/pr-1/schema/guidancecatalog.html" class="sidebar-link sidebar-nested-link">Guidance Catalog</a><a href="/pr-preview/pr-1/schema/lexicon.html" class="sidebar-link sidebar-nested-link">Lexicon</a><a href="/pr-preview/pr-1/schema/mapping-inline.html" class="sidebar-link sidebar-nested-link">Mapping Primitives</a><a href="/pr-preview/pr-1/schema/mappingdocument.html" class="sidebar-link sidebar-nested-link">Mapping Document</a><a href="/pr-preview/pr-1/schema/metadata.html" class="sidebar-link sidebar-nested-link">Metadata</a><a href="/pr-preview/pr-1/schema/policy.html" class="sidebar-link sidebar-nested-link">Policy</a><a href="/pr-preview/pr-1/schema/principlecatalog.html" class="sidebar-link sidebar-nested-link">Principle Catalog</a><a href="/pr-preview/pr-1/schema/riskcatalog.html" class="sidebar-link sidebar-nested-link">Risk Catalog</a><a href="/pr-preview/pr-1/schema/threatcatalog.html" class="sidebar-link sidebar-nested-link">Threat Catalog</a><a href="/pr-preview/pr-1/schema/vectorcatalog.html" class="sidebar-link sidebar-nested-link">Vector Catalog</a></div>
+              </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/sdk/" class="sidebar-summary-link" onclick="event.stopPropagation();">The SDKs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/sdk/go-sdk.html" class="sidebar-link sidebar-nested-link">Go SDK</a><a href="/pr-preview/pr-1/sdk/python-sdk.html" class="sidebar-link sidebar-nested-link">Python SDK</a></div>
+              </details><details class="sidebar-details">
+            <summary class="sidebar-summary">
+              <a href="/pr-preview/pr-1/tutorials/" class="sidebar-summary-link" onclick="event.stopPropagation();">Tutorials</a>
+            </summary>
+            <div class="sidebar-nested"><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Threats &amp; Controls
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/controls/threat-assessment-guide" class="sidebar-link sidebar-nested-link">Threat Assessment Guide</a><a href="/pr-preview/pr-1/tutorials/controls/control-catalog-guide" class="sidebar-link sidebar-nested-link">Control Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Guidance
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/guidance/guidance-guide" class="sidebar-link sidebar-nested-link">Guidance Catalog Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Policy
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/policy/risk-catalog-guide" class="sidebar-link sidebar-nested-link">Risk Catalog Guide</a><a href="/pr-preview/pr-1/tutorials/policy/policy-guide" class="sidebar-link sidebar-nested-link">Policy Guide</a></div>
+                  </details><details class="sidebar-details sidebar-details-nested">
+                    <summary class="sidebar-summary sidebar-nested-link">
+                      Mapping
+                    </summary>
+                    <div class="sidebar-nested"><a href="/pr-preview/pr-1/tutorials/mapping/mapping-document-guide" class="sidebar-link sidebar-nested-link">Mapping Document Guide</a></div>
+                  </details></div>
+          </details><details class="sidebar-details">
+                <summary class="sidebar-summary">
+                  <a href="/pr-preview/pr-1/adrs/" class="sidebar-summary-link" onclick="event.stopPropagation();">ADRs</a>
+                </summary>
+                <div class="sidebar-nested"><a href="/pr-preview/pr-1/adrs/0001-logical-model.html" class="sidebar-link sidebar-nested-link">Create A Logical Model for GRC Engineering Activities</a><a href="/pr-preview/pr-1/adrs/0002-model-schemas.html" class="sidebar-link sidebar-nested-link">Create Schemas for Each Layer in the Logical Model</a><a href="/pr-preview/pr-1/adrs/0003-go-sdk-layer-2.html" class="sidebar-link sidebar-nested-link">Create Go SDK to Support &quot;Layer 2&quot; Authors and Consumers</a><a href="/pr-preview/pr-1/adrs/0004-go-sdk-layer-4.html" class="sidebar-link sidebar-nested-link">Extend Go SDK for &quot;Layer 4&quot; Based on the Privateer Project</a><a href="/pr-preview/pr-1/adrs/0005-cuegen-go.html" class="sidebar-link sidebar-nested-link">Enforce Automated Alignment from Schemas to SDK</a><a href="/pr-preview/pr-1/adrs/0006-unified-package-structure.html" class="sidebar-link sidebar-nested-link">Unified Go SDK Package Structure</a><a href="/pr-preview/pr-1/adrs/0007-isolate-concepts-from-code.html" class="sidebar-link sidebar-nested-link">Isolate Concepts from Code</a><a href="/pr-preview/pr-1/adrs/0008-model-lockin.html" class="sidebar-link sidebar-nested-link">Finish Development on the Model and Common Terms</a><a href="/pr-preview/pr-1/adrs/0009-sensitive-activities.html" class="sidebar-link sidebar-nested-link">Formalize Sensitive Activities as a Layer</a><a href="/pr-preview/pr-1/adrs/0010-dual-ladder-layers.html" class="sidebar-link sidebar-nested-link">Dual-ladders Within Each Layer</a><a href="/pr-preview/pr-1/adrs/0011-definition-measurement.html" class="sidebar-link sidebar-nested-link">Adjust &quot;Upper&quot; and &quot;Lower&quot; Layer Descriptors into &quot;Definition&quot; and &quot;Measurement&quot;</a><a href="/pr-preview/pr-1/adrs/0012-schema-types.html" class="sidebar-link sidebar-nested-link">Refine Terms for Top-level Schema Types</a><a href="/pr-preview/pr-1/adrs/0013-enum-casing-conventions.html" class="sidebar-link sidebar-nested-link">Enum Casing Conventions</a><a href="/pr-preview/pr-1/adrs/0014-mapping-boundaries.html" class="sidebar-link sidebar-nested-link">Mapping Boundaries</a><a href="/pr-preview/pr-1/adrs/0015-nest-imported-fields.html" class="sidebar-link sidebar-nested-link">Nest Imported Fields Under imports Struct</a><a href="/pr-preview/pr-1/adrs/0016-base-log-type.html" class="sidebar-link sidebar-nested-link">Base Log Type</a><a href="/pr-preview/pr-1/adrs/0017-base-catalog-type.html" class="sidebar-link sidebar-nested-link">Base Catalog Type</a><a href="/pr-preview/pr-1/adrs/0018-promote-nested-concepts-to-catalogs.html" class="sidebar-link sidebar-nested-link">Promote Nested Concepts to First-class Catalogs</a><a href="/pr-preview/pr-1/adrs/0019-promote-capabilities.html" class="sidebar-link sidebar-nested-link">Promote Capabilities to a First-class Catalog</a><a href="/pr-preview/pr-1/adrs/0020-groups.html" class="sidebar-link sidebar-nested-link">Merge Family and Category into Group</a><a href="/pr-preview/pr-1/adrs/0021-lexicon.html" class="sidebar-link sidebar-nested-link">New schema for Lexicon artifacts</a><a href="/pr-preview/pr-1/adrs/0022-evidence-on-assessment-log.html" class="sidebar-link sidebar-nested-link">Add Evidence to AssessmentLog</a></div>
+              </details></nav>
+  </div>
+</aside>
+<main class="page-content" aria-label="Content">
+        <div class="wrapper">
+          <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Risk Catalog Guide</h1>
+  </header>
+
+  <div class="post-content">
+    <h2 id="what-this-is">What This Is</h2>
+
+<p>This guide walks through creating a <strong><a href="../../model/02-definitions.html#risk-catalog">Risk Catalog</a></strong> using the <a href="https://gemara.openssf.org/">Gemara</a> project. The document conforms to <code class="language-plaintext highlighter-rouge">#RiskCatalog</code> in <a href="https://github.com/gemaraproj/gemara/blob/main/riskcatalog.cue">riskcatalog.cue</a> and the published <a href="https://gemara.openssf.org/schema/riskcatalog.html">Risk Catalog schema</a>. Examples use <code class="language-plaintext highlighter-rouge">gemara-version: "1.2.0"</code> to match the <a href="https://github.com/gemaraproj/gemara/releases/tag/v1.2.0">v1.2.0</a> specification release; adjust if you target a different Gemara version.</p>
+
+<p><strong>The basic idea:</strong> A <a href="../../model/02-definitions.html#risk-catalog">Risk Catalog</a> is a structured list of <strong><a href="../../model/02-definitions.html#risk">risks</a></strong> that might affect an <a href="../../model/02-definitions.html#organization">organization</a>, system, or service. You organize them into <strong>groups</strong> (schema type <code class="language-plaintext highlighter-rouge">#RiskCategory</code>) that express how much <a href="../../model/02-definitions.html#risk">risk</a> you are willing to carry ( <a href="../../model/02-definitions.html#risk-appetite">risk appetite</a>) and optionally cap how bad a single <a href="../../model/02-definitions.html#risk">risk</a> in that group can be (<strong>max-severity</strong>). Each <a href="../../model/02-definitions.html#risk">risk</a> has an assessed <strong>severity</strong> and can point to Layer 2 <strong><a href="../../model/02-definitions.html#threat">threats</a></strong> so mitigations and policies stay traceable to <a href="../../model/02-definitions.html#threat">threat</a> catalogs. Optionally, <strong><code class="language-plaintext highlighter-rouge">rank</code></strong> records a total order among risks in this <a href="../../model/02-definitions.html#catalog">catalog</a> (for example when several share the same severity); see Step 2.</p>
+
+<p>In technical terms:</p>
+<ul>
+  <li><strong><a href="../../model/02-definitions.html#risk-catalog">Risk catalogs</a></strong> declare <code class="language-plaintext highlighter-rouge">metadata</code> (including <code class="language-plaintext highlighter-rouge">type: RiskCatalog</code>), <strong>groups</strong> as <code class="language-plaintext highlighter-rouge">#RiskCategory</code> (id, title, description, <code class="language-plaintext highlighter-rouge">#RiskAppetite</code> appetite, optional <code class="language-plaintext highlighter-rouge">#Severity</code> max-severity), and <strong><a href="../../model/02-definitions.html#risk">risks</a></strong> (<code class="language-plaintext highlighter-rouge">#Risk</code>) with required id, title, description, <code class="language-plaintext highlighter-rouge">group</code>, and <code class="language-plaintext highlighter-rouge">severity</code>, plus optional <strong><code class="language-plaintext highlighter-rouge">rank</code></strong>, owner (<code class="language-plaintext highlighter-rouge">#RACI</code>), impact, and <code class="language-plaintext highlighter-rouge">threats</code> (<code class="language-plaintext highlighter-rouge">#MultiEntryMapping</code> from <a href="https://github.com/gemaraproj/gemara/blob/main/mapping_inline.cue">mapping_inline.cue</a>.</li>
+  <li><strong>When the <a href="../../model/02-definitions.html#catalog">catalog</a> lists any risks</strong>, the schema requires at least one group (<code class="language-plaintext highlighter-rouge">groups</code> becomes required in that case).</li>
+  <li><strong>Groups</strong> use appetite values <code class="language-plaintext highlighter-rouge">Minimal</code>, <code class="language-plaintext highlighter-rouge">Low</code>, <code class="language-plaintext highlighter-rouge">Moderate</code>, or <code class="language-plaintext highlighter-rouge">High</code> and optional group-level <strong>max-severity</strong> (<code class="language-plaintext highlighter-rouge">Low</code>, <code class="language-plaintext highlighter-rouge">Medium</code>, <code class="language-plaintext highlighter-rouge">High</code>, <code class="language-plaintext highlighter-rouge">Critical</code>).</li>
+  <li><strong>Risks</strong> use <strong>severity</strong> at the same scale (<code class="language-plaintext highlighter-rouge">Low</code> through <code class="language-plaintext highlighter-rouge">Critical</code>). Optional <strong><code class="language-plaintext highlighter-rouge">rank</code></strong> is an integer; <strong>lower values mean higher relative importance</strong> among risks that set <code class="language-plaintext highlighter-rouge">rank</code>. Each <code class="language-plaintext highlighter-rouge">rank</code> value must be <strong>unique</strong> among risks that specify it (partial ranking is allowed: risks without <code class="language-plaintext highlighter-rouge">rank</code> are unconstrained). Links under <code class="language-plaintext highlighter-rouge">threats</code> use the same multi-entry mapping pattern as <a href="../../model/02-definitions.html#control">control</a> and <a href="../../model/02-definitions.html#threat">threat</a> catalogs; every outer <code class="language-plaintext highlighter-rouge">reference-id</code> must match an id in <code class="language-plaintext highlighter-rouge">metadata.mapping-references</code>.</li>
+</ul>
+
+<p>This exercise produces a <a href="../../model/02-definitions.html#risk-catalog">risk catalog</a> that you can reference from a <a href="policy-guide">Policy</a> when documenting mitigated and accepted risks.</p>
+
+<p>The example risks in this guide are drawn from the same scope as the <a href="../controls/threat-assessment-guide">Threat Assessment Guide</a>: the container management tool (SEC.SLAM.CM) and the CCC Core <a href="../../model/02-definitions.html#catalog">catalog</a>. They correspond to the imported <a href="../../model/02-definitions.html#threat">threat</a> <strong>TH14</strong> (Older Resource Versions are Used) and the custom <a href="../../model/02-definitions.html#threat">threat</a> <strong>SEC.SLAM.CM.THR01</strong> (Container Image Tampering or Poisoning) defined there.</p>
+
+<h2 id="walkthrough">Walkthrough</h2>
+
+<h3 id="step-0-metadata-and-mapping-references">Step 0: Metadata and mapping-references</h3>
+
+<p>Set <code class="language-plaintext highlighter-rouge">title</code> and <code class="language-plaintext highlighter-rouge">metadata</code>. Use <code class="language-plaintext highlighter-rouge">type: RiskCatalog</code> and the usual Gemara metadata fields (<code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">gemara-version</code>, <code class="language-plaintext highlighter-rouge">description</code>, <code class="language-plaintext highlighter-rouge">author</code>, and optional <code class="language-plaintext highlighter-rouge">version</code>). Include <code class="language-plaintext highlighter-rouge">mapping-references</code> for every external <a href="../../model/02-definitions.html#threat">threat</a> <a href="../../model/02-definitions.html#catalog">catalog</a> (or other document) you reference in risks under <code class="language-plaintext highlighter-rouge">threats</code> (by <code class="language-plaintext highlighter-rouge">reference-id</code>). Key fields:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>What It Is</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Display name for the <a href="../../model/02-definitions.html#catalog">catalog</a> (top-level)</td>
+      <td>Human-readable label in reports and tooling</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.id</code></td>
+      <td>Unique identifier for this <a href="../../model/02-definitions.html#catalog">catalog</a></td>
+      <td>Used when policies or other documents reference this <a href="../../model/02-definitions.html#catalog">catalog</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.description</code></td>
+      <td>High-level summary of the <a href="../../model/02-definitions.html#catalog">catalog</a>’s purpose and scope</td>
+      <td>Required by schema; clarifies intent</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.author</code></td>
+      <td>Actor (id, name, type) primarily responsible for this <a href="../../model/02-definitions.html#catalog">catalog</a></td>
+      <td>Required by schema; identifies the author</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">metadata.mapping-references</code></td>
+      <td>Pointers to external <a href="../../model/02-definitions.html#threat">threat</a> catalogs (or artifacts) referenced in risks</td>
+      <td>Required for <code class="language-plaintext highlighter-rouge">threats</code>; each <code class="language-plaintext highlighter-rouge">reference-id</code> used there must match here</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>Note:</strong> Include a <code class="language-plaintext highlighter-rouge">mapping-references</code> entry for every external <a href="../../model/02-definitions.html#catalog">catalog</a> you reference in any <a href="../../model/02-definitions.html#risk">risk</a>’s <code class="language-plaintext highlighter-rouge">threats</code> (by <code class="language-plaintext highlighter-rouge">reference-id</code>).</p>
+</blockquote>
+
+<p><strong>Example (YAML):</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Organization</span><span class="nv"> </span><span class="s">Risk</span><span class="nv"> </span><span class="s">Catalog</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Cloud</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Container</span><span class="nv"> </span><span class="s">Workloads"</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">org-risk-catalog-001"</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">RiskCatalog</span>
+  <span class="na">gemara-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.2.0"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">management;</span><span class="nv"> </span><span class="s">threats</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">CCC</span><span class="nv"> </span><span class="s">Core</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">SEC.SLAM.CM</span><span class="nv"> </span><span class="s">threat</span><span class="nv"> </span><span class="s">catalog."</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+  <span class="na">author</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">security-team</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Security</span><span class="nv"> </span><span class="s">Team"</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Human</span>
+  <span class="na">mapping-references</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">v2025.10</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+        <span class="s">and threat models maintained by FINOS.</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Management</span><span class="nv"> </span><span class="s">Tool</span><span class="nv"> </span><span class="s">Security</span><span class="nv"> </span><span class="s">Threat</span><span class="nv"> </span><span class="s">Catalog"</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Threat</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Threat</span><span class="nv"> </span><span class="s">Assessment</span><span class="nv"> </span><span class="s">Guide</span><span class="nv"> </span><span class="s">(SEC.SLAM.CM)."</span>
+</code></pre></div></div>
+
+<h3 id="step-1-groups-risk-categories">Step 1: Groups (risk categories)</h3>
+
+<p>Define at least one <strong>group</strong> when the <a href="../../model/02-definitions.html#catalog">catalog</a> has risks. In CUE these are <code class="language-plaintext highlighter-rouge">#RiskCategory</code> values (embedded <code class="language-plaintext highlighter-rouge">#Group</code> plus appetite). Groups classify risks and set appetite boundaries. Each group entry has:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>What It Is</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Yes</td>
+      <td>Unique identifier; risks reference this id in their <code class="language-plaintext highlighter-rouge">group</code> field</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Yes</td>
+      <td>Short name for the group</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">description</code></td>
+      <td>Yes</td>
+      <td>Explains what kinds of risks belong in this group</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">appetite</code></td>
+      <td>Yes</td>
+      <td>Acceptable level of <a href="../../model/02-definitions.html#risk">risk</a>: <code class="language-plaintext highlighter-rouge">Minimal</code>, <code class="language-plaintext highlighter-rouge">Low</code>, <code class="language-plaintext highlighter-rouge">Moderate</code>, or <code class="language-plaintext highlighter-rouge">High</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max-severity</code></td>
+      <td>No</td>
+      <td>Highest allowed severity in this group: <code class="language-plaintext highlighter-rouge">Low</code>, <code class="language-plaintext highlighter-rouge">Medium</code>, <code class="language-plaintext highlighter-rouge">High</code>, <code class="language-plaintext highlighter-rouge">Critical</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example (YAML):</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Infrastructure</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Operations"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">infrastructure,</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">platforms,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">operational</span><span class="nv"> </span><span class="s">security."</span>
+    <span class="na">appetite</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Low"</span>
+    <span class="na">max-severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Data</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Privacy"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">exposure,</span><span class="nv"> </span><span class="s">residency,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">compliance."</span>
+    <span class="na">appetite</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Minimal"</span>
+    <span class="na">max-severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Low"</span>
+</code></pre></div></div>
+
+<h3 id="step-2-risks">Step 2: Risks</h3>
+
+<p>Define <strong><a href="../../model/02-definitions.html#risk">risks</a></strong> with required fields and optional links to Layer 2 threats and RACI owner. Each <a href="../../model/02-definitions.html#risk">risk</a> must reference a group id defined in Step 1. When a group sets <strong><code class="language-plaintext highlighter-rouge">max-severity</code></strong>, keep the <a href="../../model/02-definitions.html#risk">risk</a>’s <strong><code class="language-plaintext highlighter-rouge">severity</code></strong> at or below that cap so the <a href="../../model/02-definitions.html#catalog">catalog</a> stays internally consistent (otherwise the <a href="../../model/02-definitions.html#risk">risk</a> sits outside the category’s stated tolerance).</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Required</th>
+      <th>What It Is</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">id</code></td>
+      <td>Yes</td>
+      <td>Unique identifier for this <a href="../../model/02-definitions.html#risk">risk</a>; used when policies reference it</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">title</code></td>
+      <td>Yes</td>
+      <td>Clear, concise name for the <a href="../../model/02-definitions.html#risk">risk</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">description</code></td>
+      <td>Yes</td>
+      <td>Explains the <a href="../../model/02-definitions.html#risk">risk</a> scenario and context</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">group</code></td>
+      <td>Yes</td>
+      <td>Id of a group in this <a href="../../model/02-definitions.html#catalog">catalog</a> (from Step 1)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">severity</code></td>
+      <td>Yes</td>
+      <td>Impact level: <code class="language-plaintext highlighter-rouge">Low</code>, <code class="language-plaintext highlighter-rouge">Medium</code>, <code class="language-plaintext highlighter-rouge">High</code>, or <code class="language-plaintext highlighter-rouge">Critical</code></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">rank</code></td>
+      <td>No</td>
+      <td>Optional ordering within the <a href="../../model/02-definitions.html#catalog">catalog</a>: integer; <strong>lower = more important</strong>. Unique among risks that set <code class="language-plaintext highlighter-rouge">rank</code>. Omit when severity alone is enough.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">owner</code></td>
+      <td>No</td>
+      <td>RACI roles (responsible, accountable, consulted, informed) for this <a href="../../model/02-definitions.html#risk">risk</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">impact</code></td>
+      <td>No</td>
+      <td>Business or operational impact description</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">threats</code></td>
+      <td>No</td>
+      <td>Links to Layer 2 <a href="../../model/02-definitions.html#threat">threat</a> entries via reference-id and entries (see below)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For <code class="language-plaintext highlighter-rouge">threats</code>, use the same structure as in <a href="../../model/02-definitions.html#control">control</a> and <a href="../../model/02-definitions.html#threat">threat</a> catalogs: a list of <code class="language-plaintext highlighter-rouge">#MultiEntryMapping</code> values. Each item has a <code class="language-plaintext highlighter-rouge">reference-id</code> (must match a <code class="language-plaintext highlighter-rouge">mapping-references</code> id) and <code class="language-plaintext highlighter-rouge">entries</code> (nested <code class="language-plaintext highlighter-rouge">#ArtifactMapping</code> rows). Each entry uses <code class="language-plaintext highlighter-rouge">reference-id</code> for the <a href="../../model/02-definitions.html#threat">threat</a> id in that <a href="../../model/02-definitions.html#catalog">catalog</a> and optional <code class="language-plaintext highlighter-rouge">remarks</code>.</p>
+
+<p><strong>Example (YAML):</strong></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">risks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">R01"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Compromised</span><span class="nv"> </span><span class="s">Container</span><span class="nv"> </span><span class="s">Images</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Use"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mutable</span><span class="nv"> </span><span class="s">image</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">lack</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">verification</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">lead</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">pulling</span><span class="nv"> </span><span class="s">stale</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">compromised</span><span class="nv"> </span><span class="s">images,</span><span class="nv"> </span><span class="s">increasing</span><span class="nv"> </span><span class="s">supply</span><span class="nv"> </span><span class="s">chain</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">runtime</span><span class="nv"> </span><span class="s">risk."</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+    <span class="na">rank</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">impact</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Supply</span><span class="nv"> </span><span class="s">chain</span><span class="nv"> </span><span class="s">compromise,</span><span class="nv"> </span><span class="s">unauthorized</span><span class="nv"> </span><span class="s">code</span><span class="nv"> </span><span class="s">execution,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">exfiltration."</span>
+    <span class="na">owner</span><span class="pi">:</span>
+      <span class="na">responsible</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Platform</span><span class="nv"> </span><span class="s">Engineering"</span>
+          <span class="na">affiliation</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Engineering"</span>
+      <span class="na">accountable</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CISO"</span>
+          <span class="na">affiliation</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Security"</span>
+    <span class="na">threats</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">Resource</span><span class="nv"> </span><span class="s">Versions</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">Used"</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">R02"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Image</span><span class="nv"> </span><span class="s">Tampering</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Poisoning"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Images</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">tampered</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">transit</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">rest,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">built</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">poisoned</span><span class="nv"> </span><span class="s">dependencies</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">build</span><span class="nv"> </span><span class="s">pipelines."</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+    <span class="na">rank</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="na">threats</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">Resource</span><span class="nv"> </span><span class="s">Versions</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">Used"</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM"</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM.THR01"</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Image</span><span class="nv"> </span><span class="s">Tampering</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Poisoning"</span>
+</code></pre></div></div>
+
+<h3 id="step-3-validation">Step 3: Validation</h3>
+
+<p>The <a href="../../model/02-definitions.html#catalog">catalog</a> must validate against <code class="language-plaintext highlighter-rouge">#RiskCatalog</code> in <a href="https://github.com/gemaraproj/gemara/blob/main/riskcatalog.cue">riskcatalog.cue</a> (see also the <a href="https://gemara.openssf.org/schema/riskcatalog.html">Risk Catalog schema</a> on the site). Validate with CUE:</p>
+
+<p><strong>Validation commands:</strong></p>
+
+<p>Using the <strong>published</strong> module:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>go <span class="nb">install </span>cuelang.org/go/cmd/cue@latest
+cue vet <span class="nt">-c</span> <span class="nt">-d</span> <span class="s1">'#RiskCatalog'</span> github.com/gemaraproj/gemara@latest your-risk-catalog.yaml
+</code></pre></div></div>
+
+<p>From a <strong>clone of this repository</strong> (uses the working tree’s CUE package, including <code class="language-plaintext highlighter-rouge">riskcatalog.cue</code>):</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cue vet <span class="nt">-c</span> <span class="nt">-d</span> <span class="s1">'#RiskCatalog'</span> <span class="nb">.</span> docs/tutorials/policy/risk-catalog-example.yaml
+</code></pre></div></div>
+
+<p>Fix any errors (e.g. missing required fields, risks present without <code class="language-plaintext highlighter-rouge">groups</code>, invalid <code class="language-plaintext highlighter-rouge">group</code> reference, severity or appetite not in allowed enums, <strong>duplicate <code class="language-plaintext highlighter-rouge">rank</code> values</strong> among risks that set <code class="language-plaintext highlighter-rouge">rank</code>, or a <code class="language-plaintext highlighter-rouge">threats</code> outer <code class="language-plaintext highlighter-rouge">reference-id</code> not listed in <code class="language-plaintext highlighter-rouge">metadata.mapping-references</code>) so the <a href="../../model/02-definitions.html#catalog">catalog</a> is schema-valid.</p>
+
+<h2 id="minimal-full-example">Minimal Full Example</h2>
+
+<p>A complete, schema-valid example is in <a href="risk-catalog-example.yaml">risk-catalog-example.yaml</a> in this directory. The following matches that file (omit optional sections such as <code class="language-plaintext highlighter-rouge">rank</code>, <code class="language-plaintext highlighter-rouge">owner</code>, <code class="language-plaintext highlighter-rouge">impact</code>, or <code class="language-plaintext highlighter-rouge">threats</code> in your own catalogs if you do not need them). Both align with <code class="language-plaintext highlighter-rouge">#RiskCatalog</code> in <a href="https://github.com/gemaraproj/gemara/blob/main/riskcatalog.cue">riskcatalog.cue</a>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Organization Risk Catalog for Cloud and Container Workloads (Layer 3)</span>
+<span class="c1"># Conforms to Gemara #RiskCatalog (riskcatalog.cue).</span>
+<span class="c1"># gemara-version: v1.2.0 — https://github.com/gemaraproj/gemara/releases/tag/v1.2.0</span>
+<span class="c1"># Risks drawn from Threat Assessment Guide: CCC (CCC.Core.TH14) and SEC.SLAM.CM (SEC.SLAM.CM.THR01).</span>
+<span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Organization</span><span class="nv"> </span><span class="s">Risk</span><span class="nv"> </span><span class="s">Catalog</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Cloud</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Container</span><span class="nv"> </span><span class="s">Workloads"</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">org-risk-catalog-001"</span>
+  <span class="na">type</span><span class="pi">:</span> <span class="s">RiskCatalog</span>
+  <span class="na">gemara-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.2.0"</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">management;</span><span class="nv"> </span><span class="s">threats</span><span class="nv"> </span><span class="s">linked</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">CCC</span><span class="nv"> </span><span class="s">Core</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">SEC.SLAM.CM</span><span class="nv"> </span><span class="s">threat</span><span class="nv"> </span><span class="s">catalog."</span>
+  <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+  <span class="na">author</span><span class="pi">:</span>
+    <span class="na">id</span><span class="pi">:</span> <span class="s">security-team</span>
+    <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Security</span><span class="nv"> </span><span class="s">Team"</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">Human</span>
+  <span class="na">mapping-references</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s">CCC</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s">Common Cloud Controls Core</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s">v2025.10</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">https://github.com/finos/common-cloud-controls/releases</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">Foundational repository of reusable security controls, capabilities,</span>
+        <span class="s">and threat models maintained by FINOS.</span>
+    <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM"</span>
+      <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Management</span><span class="nv"> </span><span class="s">Tool</span><span class="nv"> </span><span class="s">Security</span><span class="nv"> </span><span class="s">Threat</span><span class="nv"> </span><span class="s">Catalog"</span>
+      <span class="na">version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">1.0.0"</span>
+      <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Threat</span><span class="nv"> </span><span class="s">catalog</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Threat</span><span class="nv"> </span><span class="s">Assessment</span><span class="nv"> </span><span class="s">Guide</span><span class="nv"> </span><span class="s">(SEC.SLAM.CM)."</span>
+
+<span class="na">groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Infrastructure</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Operations"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">cloud</span><span class="nv"> </span><span class="s">infrastructure,</span><span class="nv"> </span><span class="s">container</span><span class="nv"> </span><span class="s">platforms,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">operational</span><span class="nv"> </span><span class="s">security."</span>
+    <span class="na">appetite</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Low"</span>
+    <span class="na">max-severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">data"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Data</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Privacy"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Risks</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">exposure,</span><span class="nv"> </span><span class="s">residency,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">compliance."</span>
+    <span class="na">appetite</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Minimal"</span>
+    <span class="na">max-severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Low"</span>
+
+<span class="na">risks</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">R01"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Compromised</span><span class="nv"> </span><span class="s">Container</span><span class="nv"> </span><span class="s">Images</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">Use"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Mutable</span><span class="nv"> </span><span class="s">image</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">lack</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">verification</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">lead</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">pulling</span><span class="nv"> </span><span class="s">stale</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">compromised</span><span class="nv"> </span><span class="s">images,</span><span class="nv"> </span><span class="s">increasing</span><span class="nv"> </span><span class="s">supply</span><span class="nv"> </span><span class="s">chain</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">runtime</span><span class="nv"> </span><span class="s">risk."</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+    <span class="na">rank</span><span class="pi">:</span> <span class="m">2</span>
+    <span class="na">impact</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Supply</span><span class="nv"> </span><span class="s">chain</span><span class="nv"> </span><span class="s">compromise,</span><span class="nv"> </span><span class="s">unauthorized</span><span class="nv"> </span><span class="s">code</span><span class="nv"> </span><span class="s">execution,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">exfiltration."</span>
+    <span class="na">owner</span><span class="pi">:</span>
+      <span class="na">responsible</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Platform</span><span class="nv"> </span><span class="s">Engineering"</span>
+          <span class="na">affiliation</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Engineering"</span>
+      <span class="na">accountable</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">CISO"</span>
+          <span class="na">affiliation</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Security"</span>
+    <span class="na">threats</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">Resource</span><span class="nv"> </span><span class="s">Versions</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">Used"</span>
+  <span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">R02"</span>
+    <span class="na">title</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Image</span><span class="nv"> </span><span class="s">Tampering</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Poisoning"</span>
+    <span class="na">description</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Images</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">tampered</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">transit</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">rest,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">built</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">poisoned</span><span class="nv"> </span><span class="s">dependencies</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">build</span><span class="nv"> </span><span class="s">pipelines."</span>
+    <span class="na">group</span><span class="pi">:</span> <span class="s2">"</span><span class="s">infrastructure"</span>
+    <span class="na">severity</span><span class="pi">:</span> <span class="s2">"</span><span class="s">High"</span>
+    <span class="na">rank</span><span class="pi">:</span> <span class="m">1</span>
+    <span class="na">threats</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s">CCC.Core.TH14</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Older</span><span class="nv"> </span><span class="s">Resource</span><span class="nv"> </span><span class="s">Versions</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">Used"</span>
+      <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM"</span>
+        <span class="na">entries</span><span class="pi">:</span>
+          <span class="pi">-</span> <span class="na">reference-id</span><span class="pi">:</span> <span class="s2">"</span><span class="s">SEC.SLAM.CM.THR01"</span>
+            <span class="na">remarks</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Container</span><span class="nv"> </span><span class="s">Image</span><span class="nv"> </span><span class="s">Tampering</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">Poisoning"</span>
+</code></pre></div></div>
+
+<h2 id="whats-next">What’s Next</h2>
+
+<ul>
+  <li>Reference this <a href="../../model/02-definitions.html#risk-catalog">risk catalog</a> from a <strong><a href="../../model/02-definitions.html#policy">Policy</a></strong> document: in the <a href="../../model/02-definitions.html#policy">policy</a>’s <code class="language-plaintext highlighter-rouge">risks</code> section, use <code class="language-plaintext highlighter-rouge">mitigated</code> and <code class="language-plaintext highlighter-rouge">accepted</code> entries that reference <a href="../../model/02-definitions.html#risk">risk</a> ids (and, for accepted risks, justification and optional scope). See the <a href="policy-guide">Policy Guide</a> and the <code class="language-plaintext highlighter-rouge">risks</code> section of the <a href="https://gemara.openssf.org/schema/policy.html">Policy schema</a>.</li>
+  <li>Use <strong>Layer 5</strong> evaluations to assess whether controls and implementations address the threats linked to these risks.</li>
+  <li>Use <strong>Layer 7</strong> <a href="../../model/02-definitions.html#audit">audit</a> and <a href="../../model/02-definitions.html#continuous-monitoring">continuous monitoring</a> to review <a href="../../model/02-definitions.html#risk">risk</a> posture and <a href="../../model/02-definitions.html#policy">policy</a> effectiveness.</li>
+</ul>
+
+  </div>
+
+</article>
+
+        </div>
+      </main>
+    </div><footer class="site-footer h-card">
+  <data class="u-url" value="/pr-preview/pr-1/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li class="p-name">Gemara Authors</li>
+          <li><a class="u-email" href="mailto:gemara+subscribe@lists.openssf.org">gemara+subscribe@lists.openssf.org</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>GRC Engineering Model for Automated Risk Assessment - A logical model to describe compliance activities, their interactions, and schemas for automated interoperability.</p>
+      </div>
+    </div><ul class="social-media-list"><li>
+          <a href="https://github.com/ossf" title="" aria-label="">
+            <i class="fa-brands fa-github" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://x.com/openssf" title="" aria-label="">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://bsky.app/profile/openssf.org" title="" aria-label="">
+            <i class="fa-brands fa-bluesky" aria-hidden="true"></i>
+          </a>
+        </li><li>
+          <a href="https://www.linkedin.com/company/openssf/" title="" aria-label="">
+            <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+          </a>
+        </li></ul><div class="footer-copyright">
+        Copyright © Gemara contributors, a Series of LF Projects, LLC.
+        For website terms of use, trademark policy, and other project policies please see <a href="https://lfprojects.org">https://lfprojects.org</a>.
+        This site is open source. View or contribute at <a href="https://github.com/gemaraproj/gemara">GitHub</a>.
+    </div>
+
+</div>
+
+</footer>
+<script src="/pr-preview/pr-1/assets/js/theme-toggle.js"></script>
+    <script src="/pr-preview/pr-1/assets/js/search.js" defer></script>
+  </body>
+
+</html>
