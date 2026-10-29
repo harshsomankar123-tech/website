@@ -98,49 +98,49 @@ html, body {
    ============================================ */
 @font-face {
   font-family: "Cairo";
-  src: url("/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Regular.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cairo";
-  src: url("/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Medium.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cairo";
-  src: url("/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-SemiBold.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cairo";
-  src: url("/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Bold.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/Cairo/static/Cairo-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans";
-  src: url("/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Regular.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans";
-  src: url("/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Bold.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans";
-  src: url("/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Medium.ttf") format("truetype");
+  src: url("/website/pr-preview/pr-1/assets/fonts/IBMPlexSans/IBMPlexSans-Medium.ttf") format("truetype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
